@@ -93,20 +93,25 @@
 
 <script>
   /* 📸 BACKGROUND SLIDESHOW */
-  const photos = [
-    "images/photo1.jpg",
-    "images/photo2.jpg",
-    "images/photo3.jpg"
-  ];
+const photos = [
+  "images/photo1.jpg",
+  "images/photo2.jpg",
+  "images/photo3.jpg"
+];
 
-  let bgIndex = 0;
+let bgIndex = 0;
+
+window.onload = function () {
   function changeBackground() {
     document.body.style.backgroundImage =
-      `url('${photos[bgIndex]}')`;
+      "url('" + photos[bgIndex] + "')";
     bgIndex = (bgIndex + 1) % photos.length;
   }
-  changeBackground();
-  setInterval(changeBackground, 4000);
+
+  changeBackground();              // show first image
+  setInterval(changeBackground, 4000); // change every 4s
+};
+
 
   /* 💌 EDIT LETTER HERE */
   document.getElementById("letterText").innerText = `
