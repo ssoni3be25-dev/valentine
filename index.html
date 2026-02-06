@@ -1,175 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>For Tanubb ❤️</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Valentine 💖</title>
 
   <style>
     body {
       margin: 0;
       height: 100vh;
-      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ff9ecf, #ffc1dc);
+      font-family: "Comic Sans MS", cursive;
       text-align: center;
       overflow: hidden;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      transition: background-image 1.5s ease-in-out;
     }
 
-    .screen {
-      position: absolute;
-      top: 35%;
-      width: 100%;
-      color: white;
-      text-shadow: 0 0 10px black;
+    h1 {
+      margin-top: 20vh;
+      font-size: 3em;
+      color: #b3005e;
+    }
+
+    p {
+      font-size: 1.3em;
+      color: #7a003c;
+      padding: 20px;
     }
 
     button {
-      font-size: 22px;
-      padding: 14px 26px;
-      margin: 10px;
-      border-radius: 25px;
+      padding: 15px 30px;
+      font-size: 1.2em;
       border: none;
+      border-radius: 30px;
       cursor: pointer;
+      margin: 20px;
     }
 
-    .hidden {
-      display: none;
+    #yesBtn {
+      background-color: #ff4d94;
+      color: white;
     }
 
     #noBtn {
+      background-color: #555;
+      color: white;
       position: absolute;
     }
 
-    #letterBox {
-      width: 80%;
-      margin: auto;
-      background: rgba(0,0,0,0.5);
-      padding: 20px;
-      border-radius: 20px;
-      font-size: 20px;
-    }
-
-    /* ❤️ hearts */
-    .heart {
-      position: fixed;
-      top: -40px;
-      font-size: 30px;
-      animation: fall linear infinite;
-      pointer-events: none;
-    }
-
     @keyframes fall {
-      to { transform: translateY(110vh); }
+      to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
     }
   </style>
 </head>
 
 <body>
 
-<!-- HOME -->
-<div id="home" class="screen">
-  <h1>Hey ❤️</h1>
-  <p>I made this just for you.</p>
-  <button onclick="start()">START</button>
-  <button onclick="openLetter()">TANUBB</button>
-</div>
+  <div id="content">
+    <h1>Hey You 💕</h1>
+    <p>Answer honestly 😌</p>
 
-<!-- LETTER -->
-<div id="letter" class="screen hidden">
-  <div id="letterBox">
-    <p id="letterText"></p>
-    <br>
-    <button onclick="goHome()">Back</button>
+    <button id="startBtn" onclick="startQuestions()">Start</button>
   </div>
-</div>
 
-<!-- FINAL QUESTION -->
-<div id="final" class="screen hidden">
-  <h1>Will you be my Valentine? 💖</h1>
-  <button onclick="yes()">YES 💕</button>
-  <button id="noBtn">NO 😈</button>
-</div>
+  <script>
+    let questions = [
+      "Do you like surprises? 💝",
+      "Do you think I’m cute? 😌",
+      "Will you be my Valentine? 💘"
+    ];
 
-<script>
-  /* 📸 BACKGROUND SLIDESHOW */
-const photos = [
-  "images/photo1.jpg",
-  "images/photo2.jpg",
-  "images/photo3.jpg"
-];
+    let qIndex = 0;
 
-let bgIndex = 0;
+    function startQuestions() {
+      showQuestion();
+    }
 
-window.onload = function () {
-  function changeBackground() {
-    document.body.style.backgroundImage =
-      "url('" + photos[bgIndex] + "')";
-    bgIndex = (bgIndex + 1) % photos.length;
-  }
-
-  changeBackground();              // show first image
-  setInterval(changeBackground, 4000); // change every 4s
-};
-
-
-  /* 💌 EDIT LETTER HERE */
-  document.getElementById("letterText").innerText = `
-MY BIG AHH PARA FOR YOU ❤️
-
-You can change this text anytime.
-This is where you pour your heart out.
-She WILL read all of it.
-`;
-
-  /* NAVIGATION */
-  function start() {
-    hideAll();
-    document.getElementById("final").classList.remove("hidden");
-    activateNo();
-  }
-
-  function openLetter() {
-    hideAll();
-    document.getElementById("letter").classList.remove("hidden");
-  }
-
-  function goHome() {
-    hideAll();
-    document.getElementById("home").classList.remove("hidden");
-  }
-
-  function hideAll() {
-    document.getElementById("home").classList.add("hidden");
-    document.getElementById("letter").classList.add("hidden");
-    document.getElementById("final").classList.add("hidden");
-  }
-
-  /* NO BUTTON RUNS AWAY */
-  function activateNo() {
-    const noBtn = document.getElementById("noBtn");
-    noBtn.onmouseover = () => {
-      noBtn.style.left = Math.random() * 80 + "vw";
-      noBtn.style.top = Math.random() * 80 + "vh";
-    };
-  }
-
-  function yes() {
-    alert("SHE SAID YES 💖🌸🎆");
-  }
-
-  /* ❤️ FALLING HEARTS */
-  setInterval(() => {
-    const h = document.createElement("div");
-    h.className = "heart";
-    h.innerText = "❤️";
-    h.style.left = Math.random() * 100 + "vw";
-    h.style.animationDuration = (Math.random() * 3 + 3) + "s";
-    document.body.appendChild(h);
-    setTimeout(() => h.remove(), 6000);
-  }, 400);
-</script>
-
-</body>
-</html>
+    function showQuestion() {
+      document.getElementById("content").innerHTML = `
+        <h1>${questions[qIndex]}</h1>
+        <button id="y
